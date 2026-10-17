@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shivansh Mishra | Student Developer Portfolio</title>
+    <meta name="description" content="Shivansh Mishra – B.Tech IT student at SGSITS Indore. Full-stack developer, competitive programmer, and open-source contributor. Explore my projects, experience, and skills." />
+    <meta name="keywords" content="Shivansh Mishra, portfolio, developer, React, Node.js, SGSITS, full-stack, competitive programming" />
+    <meta name="author" content="Shivansh Mishra" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shivansh Mishra | Developer Portfolio" />
+    <meta property="og:description" content="B.Tech IT student at SGSITS Indore. Full-stack developer & competitive programmer." />
+    <meta property="og:type" content="website" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              display: ['Geist', 'system-ui', 'sans-serif'],
+            },
+            keyframes: {
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' }
+              },
+              'fade-in': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              }
+            },
+            animation: {
+              marquee: 'marquee 25s linear infinite',
+              'fade-in': 'fade-in 0.6s ease-out forwards',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#09090b]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

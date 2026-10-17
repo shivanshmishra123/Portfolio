@@ -1,0 +1,91 @@
+import { personalInfo, stats } from "../data/portfolioData";
+import { DownloadIcon, EmailIcon } from "./Icons";
+
+export default function Hero() {
+  const handleScroll = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-[calc(100vh-80px)] flex items-center py-16 md:py-24 bg-transparent overflow-hidden"
+    >
+      {/* Background ambient glow - subtle & elegant */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(255,90,54,0.06),transparent_70%)] blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+          {/* Profile Photo */}
+          <div className="lg:col-span-5 flex justify-center order-1 lg:order-1 lg:self-start lg:pt-4">
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl shadow-black/80 border border-white/10 hover:border-white/25 transition-all duration-300 hover:scale-[1.02]">
+              <img
+                src={personalInfo.profilePhoto}
+                alt={`${personalInfo.name} Portrait`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(personalInfo.name)}&background=FF5A36&color=fff&size=400`;
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Hero Text */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-2">
+
+            {/* Name */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#FF5A36] tracking-tight leading-tight drop-shadow-sm">
+              {personalInfo.name}
+            </h1>
+
+            {/* Title */}
+            <p className="mt-3 text-lg sm:text-xl font-medium text-[#3DD68C] flex items-center flex-wrap justify-center lg:justify-start gap-2">
+              <span>{personalInfo.title}</span>
+              <span className="text-slate-600 font-normal">|</span>
+              <span>{personalInfo.college}</span>
+            </p>
+
+            {/* Bio */}
+            <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+              {personalInfo.bio}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+              <a
+                href={personalInfo.resumeUrl}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-[#FF5A36] hover:bg-[#e44a27] shadow-lg shadow-[#FF5A36]/30 hover:shadow-xl hover:shadow-[#FF5A36]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DownloadIcon />
+                <span>Download Resume</span>
+              </a>
+              <button
+                onClick={() => handleScroll("contact")}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-[#09090b] bg-[#3DD68C] hover:bg-[#32c57f] border-2 border-[#3DD68C] hover:border-[#32c57f] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-[#3DD68C]/25 hover:shadow-xl hover:shadow-[#3DD68C]/35"
+              >
+                <EmailIcon className="w-5 h-5" />
+                <span>Contact Me</span>
+              </button>
+            </div>
+
+            {/* Stats row */}
+            <div className="mt-10 pt-8 border-t border-slate-800/80 flex items-center gap-8 text-left">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex items-center gap-8">
+                  {i > 0 && <div className="h-8 w-px bg-slate-800" />}
+                  <div>
+                    <p className="text-2xl font-bold text-white">{stat.value}</p>
+                    <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{stat.label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
