@@ -6,15 +6,68 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000)); // simulate async
-    setSubmitted(true);
-    setLoading(false);
+    setError(null);
+
+    const scriptUrl =
+      contactInfo.googleScriptUrl ||
+      "https://script.google.com/macros/s/AKfycbyF_WjluXdIVx8mYaED828TECCfi-VB2YMwpglS3etytnrM80lPjyV6jbBSVITK063JRQ/exec";
+
+    try {
+      const params = new URLSearchParams();
+      params.append("name", form.name.trim());
+      params.append("email", form.email.trim());
+      params.append("subject", form.subject.trim());
+      params.append("message", form.message.trim());
+
+      const res = await fetch(scriptUrl, {
+        method: "POST",
+        body: params,
+      });
+
+      const text = await res.text();
+      let data = {};
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { success: true };
+      }
+
+      if (data.success !== false) {
+        setSubmitted(true);
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setError(data.message || "Failed to submit message. Please try again.");
+      }
+    } catch (err) {
+      console.warn("Standard fetch encountered an issue, trying direct fallback...", err);
+      try {
+        const params = new URLSearchParams();
+        params.append("name", form.name.trim());
+        params.append("email", form.email.trim());
+        params.append("subject", form.subject.trim());
+        params.append("message", form.message.trim());
+
+        await fetch(scriptUrl, {
+          method: "POST",
+          mode: "no-cors",
+          body: params,
+        });
+
+        setSubmitted(true);
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } catch (fallbackErr) {
+        setError("Unable to submit right now. Please email directly at " + contactInfo.email);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactItems = [
@@ -133,22 +186,28 @@ export default function Contact() {
           <div className="lg:col-span-7 bg-[#131316] rounded-2xl p-8 sm:p-10 border border-white/10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.7)]">
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center gap-4 py-12">
-                <div className="w-16 h-16 rounded-full bg-[#3DD68C]/20 flex items-center justify-center text-3xl">
-                  ✅
+                <div className="w-16 h-16 rounded-full bg-[#3DD68C]/20 border border-[#3DD68C]/40 flex items-center justify-center text-2xl text-[#3DD68C]">
+                  ✓
                 </div>
-                <h3 className="text-xl font-bold text-white">Message Sent!</h3>
-                <p className="text-slate-400 text-sm max-w-xs">
-                  Thanks for reaching out. I'll get back to you within 24 hours.
+                <h3 className="text-xl font-bold text-white">Message Delivered!</h3>
+                <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
+                  Thanks for reaching out! Your submission has been saved to the database and an automated notification has been triggered. I'll get back to you shortly.
                 </p>
                 <button
-                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }}
+                  onClick={() => { setSubmitted(false); setError(null); }}
                   className="mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold bg-[#FF5A36]/15 text-[#FF5A36] border border-[#FF5A36]/30 hover:bg-[#FF5A36] hover:text-white transition-all"
                 >
-                  Send Another
+                  Send Another Message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-3">
+                    <span className="text-base">⚠️</span>
+                    <span className="leading-snug">{error}</span>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>

@@ -139,6 +139,10 @@ export const contactInfo = {
   location: "Indore, Madhya Pradesh, India",
   linkedin: "https://linkedin.com/in/shivansh-mishra-sgsits",
   github: "https://github.com/shivanshmishra123",
+  googleScriptUrl:
+    "https://script.google.com/macros/s/AKfycbyF_WjluXdIVx8mYaED828TECCfi-VB2YMwpglS3etytnrM80lPjyV6jbBSVITK063JRQ/exec",
+  googleSheetUrl:
+    "https://docs.google.com/spreadsheets/d/1Mc5XBzXWTdvhODXei5qNzJFSrLibLzUd3kFbi-pNOug/edit?gid=0#gid=0",
 };
 
 export const navLinks = [
