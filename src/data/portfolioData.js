@@ -6,7 +6,7 @@ export const personalInfo = {
   name: "Shivansh Mishra",
   title: "B.Tech – IT, 3rd Year",
   college: "SGSITS Indore",
-  bio: "Passionate software engineer and computer science enthusiast driven by building robust full-stack applications and solving algorithmic challenges. Experienced in modern web frameworks, system design fundamentals, and scalable cloud architectures. Always keen to explore emerging tech, collaborate on high-impact projects, and craft seamless user experiences.",
+  bio: "Passionate builder, CS enthusiast driven by building robust full-stack applications and solving algorithmic challenges. Experienced in modern web frameworks, system design fundamentals, and scalable cloud architectures. Focused on building things that really matter, make life easier.  ",
   email: "13shivanshmishra@gmail.com",
   phone: "+91 70247 21150",
   location: "Indore, Madhya Pradesh, India",
@@ -15,7 +15,7 @@ export const personalInfo = {
 };
 
 export const stats = [
-  { value: "600+", label: "LeetCode Solved" },
+  { value: "Knight & 600+", label: "LeetCode Solved" },
   { value: "3★", label: "CodeChef Rated" },
   { value: "8.3+", label: "Current CGPA" },
 ];
@@ -23,9 +23,9 @@ export const stats = [
 export const socialLinks = [
   { id: "github", name: "GitHub", url: "https://github.com/shivanshmishra123", icon: "github" },
   { id: "leetcode", name: "LeetCode", url: "https://leetcode.com/shivanshm2006", icon: "leetcode" },
-  { id: "codechef", name: "CodeChef", url: "https://codechef.com/users/shivansh_mishra", icon: "codechef" },
+  { id: "codechef", name: "CodeChef", url: "https://www.codechef.com/users/shivansh_m1312", icon: "codechef" },
   { id: "linkedin", name: "LinkedIn", url: "https://linkedin.com/in/shivansh-mishra-sgsits", icon: "linkedin" },
-  { id: "codeforces", name: "Codeforces", url: "https://codeforces.com/profile/shivansh_mishra", icon: "codeforces" },
+  { id: "codeforces", name: "Codeforces", url: "https://codeforces.com/profile/shivanshm13", icon: "codeforces" },
 ];
 
 export const projects = [
@@ -125,11 +125,11 @@ export const experience = [
 ];
 
 export const skills = [
-  { category: "Languages", items: ["C++", "Python", "JavaScript", "TypeScript", "Go", "Java"] },
-  { category: "Frontend", items: ["React", "Next.js", "TailwindCSS", "Redux", "HTML5", "CSS3"] },
-  { category: "Backend", items: ["Node.js", "Express", "FastAPI", "GraphQL", "REST APIs"] },
-  { category: "Database", items: ["MongoDB", "PostgreSQL", "Redis", "Firebase"] },
-  { category: "DevOps & Cloud", items: ["Docker", "AWS EC2", "GitHub Actions", "CI/CD", "gRPC"] },
+  { category: "Languages", items: ["C", "Python", "JavaScript", "Java"] },
+  { category: "Frontend", items: ["React", "TailwindCSS", "Redux", "HTML5", "CSS3"] },
+  { category: "Backend", items: ["Spring Boot", "FastAPI", "REST APIs"] },
+  { category: "Database", items: ["MySQL", "PostgreSQL", "Redis"] },
+  { category: "DevOps & Cloud", items: ["Docker", "AWS EC2", "CI/CD"] },
   { category: "Tools", items: ["Git", "Linux", "Postman", "Figma", "VS Code"] },
 ];
 
