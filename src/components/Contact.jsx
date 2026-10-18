@@ -1,6 +1,65 @@
 import { useState } from "react";
 import { contactInfo } from "../data/portfolioData";
 import { EmailIcon, PhoneIcon, LocationIcon, LinkedinIcon, GithubIcon } from "./Icons";
+import { motion } from "framer-motion";
+
+const sectionHeaderVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(6px)",
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const leftColumnVariants = {
+  hidden: {
+    opacity: 0,
+    x: -40,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 },
+  },
+};
+
+const rightColumnVariants = {
+  hidden: {
+    opacity: 0,
+    x: 40,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 },
+  },
+};
+
+const contactItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.1 + (i % 4) * 0.06,
+    },
+  }),
+};
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -95,27 +154,44 @@ export default function Contact() {
     <section id="contact" className="py-24 bg-transparent border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <motion.div
+          className="text-center max-w-2xl mx-auto mb-16"
+          variants={sectionHeaderVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-60px" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FF5A36] tracking-tight">
             Get In Touch
           </h2>
           <p className="mt-3 text-base text-slate-300">
             Have an exciting project, internship opportunity, or just want to chat about tech? Let's connect!
           </p>
-        </div>
+        </motion.div>
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
           {/* LEFT: Contact Details */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <motion.div
+            className="lg:col-span-5 flex flex-col gap-6"
+            variants={leftColumnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-40px" }}
+          >
             <h3 className="text-xl font-bold text-white">Contact Information</h3>
 
             <div className="space-y-4">
-              {contactItems.map((item) =>
+              {contactItems.map((item, i) =>
                 item.href ? (
-                  <a
+                  <motion.a
                     key={item.label}
                     href={item.href}
+                    custom={i}
+                    variants={contactItemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false }}
                     className="flex items-center gap-4 p-4 rounded-xl bg-[#131316] border border-white/10 shadow-sm hover:border-[#FF5A36]/60 transition-all group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-[#FF5A36]/15 text-[#FF5A36] flex items-center justify-center group-hover:bg-[#FF5A36] group-hover:text-white transition-colors">
@@ -127,10 +203,15 @@ export default function Contact() {
                         {item.value}
                       </p>
                     </div>
-                  </a>
+                  </motion.a>
                 ) : (
-                  <div
+                  <motion.div
                     key={item.label}
+                    custom={i}
+                    variants={contactItemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false }}
                     className="flex items-center gap-4 p-4 rounded-xl bg-[#131316] border border-white/10 shadow-sm"
                   >
                     <div className="w-12 h-12 rounded-xl bg-[#FF5A36]/15 text-[#FF5A36] flex items-center justify-center">
@@ -140,13 +221,19 @@ export default function Contact() {
                       <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{item.label}</p>
                       <p className="text-sm font-semibold text-slate-200">{item.value}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 )
               )}
             </div>
 
             {/* Social Quick Links */}
-            <div className="grid grid-cols-2 gap-4">
+            <motion.div
+              className="grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
               <a
                 href={contactInfo.linkedin}
                 target="_blank"
@@ -165,10 +252,16 @@ export default function Contact() {
                 <GithubIcon className="w-5 h-5 fill-current text-[#FF5A36]" />
                 <span className="text-sm font-semibold text-slate-200 group-hover:text-[#FF5A36]">GitHub</span>
               </a>
-            </div>
+            </motion.div>
 
             {/* Availability card */}
-            <div className="p-5 rounded-2xl bg-[#3DD68C]/10 border border-[#3DD68C]/30">
+            <motion.div
+              className="p-5 rounded-2xl bg-[#3DD68C]/10 border border-[#3DD68C]/30"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="flex items-center gap-2 mb-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3DD68C] opacity-75" />
@@ -179,13 +272,24 @@ export default function Contact() {
               <p className="text-xs text-slate-400">
                 Actively looking for internships, full-time roles, and freelance projects.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT: Contact Form */}
-          <div className="lg:col-span-7 bg-[#131316] rounded-2xl p-8 sm:p-10 border border-white/10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.7)]">
+          <motion.div
+            className="lg:col-span-7 bg-[#131316] rounded-2xl p-8 sm:p-10 border border-white/10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.7)]"
+            variants={rightColumnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-40px" }}
+          >
             {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center text-center gap-4 py-12">
+              <motion.div
+                className="h-full flex flex-col items-center justify-center text-center gap-4 py-12"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className="w-16 h-16 rounded-full bg-[#3DD68C]/20 border border-[#3DD68C]/40 flex items-center justify-center text-2xl text-[#3DD68C]">
                   ✓
                 </div>
@@ -199,14 +303,19 @@ export default function Contact() {
                 >
                   Send Another Message
                 </button>
-              </div>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {error && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-3">
+                  <motion.div
+                    className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-3"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <span className="text-base">⚠️</span>
                     <span className="leading-snug">{error}</span>
-                  </div>
+                  </motion.div>
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Name */}
@@ -293,7 +402,7 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

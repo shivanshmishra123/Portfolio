@@ -1,5 +1,6 @@
 import { projects } from "../data/portfolioData";
 import { GithubIcon, ExternalLinkIcon } from "./Icons";
+import { motion } from "framer-motion";
 
 const badgeStyles = {
   orange: "text-[#FF5A36] bg-[#FF5A36]/10 border-[#FF5A36]/30",
@@ -7,12 +8,52 @@ const badgeStyles = {
   slate: "text-slate-300 bg-slate-800 border-slate-700",
 };
 
+const sectionHeaderVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(6px)",
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.96,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+      delay: (i % 2) * 0.12,
+    },
+  }),
+};
+
 export default function Projects() {
   return (
     <section id="projects" className="py-24 bg-[#0e0e11]/80 backdrop-blur-[2px] border-y border-white/10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <motion.div
+          className="text-center max-w-2xl mx-auto mb-16"
+          variants={sectionHeaderVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-60px" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FF5A36] tracking-tight inline-block relative">
             Projects
             <span className="block w-12 h-1 bg-[#3DD68C] rounded-full mx-auto mt-2 shadow-sm shadow-[#3DD68C]/50" />
@@ -20,13 +61,18 @@ export default function Projects() {
           <p className="mt-4 text-base text-slate-300">
             A collection of featured engineering projects, full-stack systems, and open-source contributions.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {projects.map((project) => (
-            <div
+          {projects.map((project, index) => (
+            <motion.div
               key={project.id}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, margin: "-50px" }}
               className="group bg-[#131316] rounded-2xl overflow-hidden border border-white/10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.7)] hover:shadow-[0_20px_35px_-10px_rgba(255,90,54,0.25)] hover:border-[#FF5A36]/60 transition-all duration-300 flex flex-col hover:-translate-y-1.5"
             >
               {/* Thumbnail */}
@@ -102,7 +148,7 @@ export default function Projects() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

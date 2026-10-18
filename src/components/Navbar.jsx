@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 import { navLinks, personalInfo } from "../data/portfolioData";
 import { MenuIcon, CloseIcon } from "./Icons";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  // Scroll progress indicator
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +47,18 @@ export default function Navbar() {
           : "bg-[#09090b]/80 backdrop-blur-md border-b border-white/5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      {/* Scroll Progress Bar (Solid Orange, Bidirectional Retract/Expand) */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#FF5A36] origin-left z-50 shadow-[0_0_8px_rgba(255,90,54,0.6)]"
+        style={{ scaleX }}
+      />
+
+      <motion.div
+        className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      >
         {/* Logo */}
         <a
           href="#home"
@@ -52,10 +72,10 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-1 text-[14px] font-semibold text-slate-300">
-          {navLinks.map((link) => {
+          {navLinks.map((link, i) => {
             const isActive = activeSection === link.href.replace("#", "");
             return (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
@@ -64,18 +84,30 @@ export default function Navbar() {
                     ? "text-[#FF5A36] bg-[#FF5A36]/10"
                     : "hover:text-[#FF5A36] hover:bg-white/5"
                 }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#FF5A36]" />
+                  <motion.span
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#FF5A36]"
+                    layoutId="navIndicator"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
                 )}
-              </a>
+              </motion.a>
             );
           })}
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:block">
+        <motion.div
+          className="hidden md:block"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        >
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
@@ -83,7 +115,7 @@ export default function Navbar() {
           >
             Get in Touch
           </a>
-        </div>
+        </motion.div>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -93,7 +125,7 @@ export default function Navbar() {
         >
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu */}
       <div

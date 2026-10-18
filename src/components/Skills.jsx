@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { skills } from "../data/portfolioData";
 import { techMeta, defaultTechIcon } from "./TechIcons";
+import { motion } from "framer-motion";
 
 const categoryConfig = {
   Languages: {
@@ -40,6 +41,57 @@ const categoryConfig = {
     subtitle: "Daily developer ergonomics, terminal scripting & interface design",
     span: "lg:col-span-2",
   },
+};
+
+const sectionHeaderVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(6px)",
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+      delay: (i % 3) * 0.08,
+    },
+  }),
+};
+
+const tileVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.85,
+    transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.08 + (i % 6) * 0.03,
+    },
+  }),
 };
 
 export default function Skills() {
@@ -86,7 +138,13 @@ export default function Skills() {
     <section id="skills" className="py-24 bg-transparent border-t border-white/10 relative">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <motion.div
+          className="text-center max-w-2xl mx-auto mb-12"
+          variants={sectionHeaderVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-60px" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FF5A36] tracking-tight inline-block relative">
             Tech Stack
             <span className="block w-12 h-1 bg-[#3DD68C] rounded-full mx-auto mt-2 shadow-sm shadow-[#3DD68C]/50" />
@@ -94,10 +152,16 @@ export default function Skills() {
           <p className="mt-4 text-base text-slate-300">
             A comprehensive overview of programming languages, modern frameworks, data systems, and DevOps infrastructure I work with.
           </p>
-        </div>
+        </motion.div>
 
         {/* Interactive Controls Bar: Category Filter Pills + Quick Search */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
+        <motion.div
+          className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
             {categories.map((cat) => {
@@ -140,7 +204,7 @@ export default function Skills() {
               </button>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* No Results Fallback */}
         {filteredSkills.length === 0 && (
@@ -157,7 +221,7 @@ export default function Skills() {
 
         {/* Dynamic Architectural Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((group) => {
+          {filteredSkills.map((group, groupIdx) => {
             const config = categoryConfig[group.category] || {
               accent: "#FF5A36",
               badge: "Technology",
@@ -168,8 +232,13 @@ export default function Skills() {
             const isHeroCard = config.span.includes("lg:col-span-2") && selectedCategory === "All" && !searchQuery;
 
             return (
-              <div
+              <motion.div
                 key={group.category}
+                custom={groupIdx}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, margin: "-50px" }}
                 className={`relative group bg-[#131316] rounded-2xl border border-white/10 p-6 sm:p-7 transition-all duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/60 flex flex-col justify-between overflow-hidden ${isHeroCard ? "lg:col-span-2" : "lg:col-span-1"
                   }`}
               >
@@ -225,7 +294,7 @@ export default function Skills() {
                         : "grid-cols-1 sm:grid-cols-2"
                       }`}
                   >
-                    {group.items.map((skillName) => {
+                    {group.items.map((skillName, tileIdx) => {
                       const meta = techMeta[skillName] || {
                         color: config.accent,
                         level: "Proficient",
@@ -235,8 +304,13 @@ export default function Skills() {
                       const IconComponent = meta.icon || defaultTechIcon;
 
                       return (
-                        <div
+                        <motion.div
                           key={skillName}
+                          custom={tileIdx}
+                          variants={tileVariants}
+                          initial="hidden"
+                          whileInView="visible"
+                          viewport={{ once: false, margin: "-20px" }}
                           className="group/tile relative p-3 rounded-xl bg-[#09090b]/80 border border-white/5 hover:border-white/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg flex items-start gap-3 cursor-default"
                         >
                           {/* Tech Brand Icon */}
@@ -266,7 +340,7 @@ export default function Skills() {
                               {meta.desc}
                             </p>
                           </div>
-                        </div>
+                        </motion.div>
                       );
                     })}
                   </div>
@@ -279,20 +353,26 @@ export default function Skills() {
                     Production Stack
                   </span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Global Stack Summary Pill */}
-        <div className="mt-12 text-center">
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-20px" }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#131316] border border-white/10 text-xs text-slate-400 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#3DD68C] animate-pulse" />
             <span>
               Showing <strong className="text-white">{totalMatchingCount}</strong> verified technologies in daily engineering workflow
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

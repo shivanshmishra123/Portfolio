@@ -1,11 +1,19 @@
 import { socialLinks } from "../data/portfolioData";
 import { iconMap } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function ProfilesMarquee() {
   const doubled = [...socialLinks, ...socialLinks]; // duplicate for seamless loop
 
   return (
-    <section id="profiles" className="py-12 bg-transparent">
+    <motion.section
+      id="profiles"
+      className="py-12 bg-transparent"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
 
       {/* Marquee strip */}
       <div className="w-full bg-[#FF5A36] py-5 overflow-hidden shadow-lg shadow-[#FF5A36]/20 group">
@@ -29,6 +37,6 @@ export default function ProfilesMarquee() {
           })}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

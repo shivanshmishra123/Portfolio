@@ -1,5 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { experience } from "../data/portfolioData";
+import { motion } from "framer-motion";
+
+const sectionHeaderVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(6px)",
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 export default function Experience() {
   const containerRef = useRef(null);
@@ -79,15 +95,18 @@ export default function Experience() {
         tracerRef.current.style.opacity = h > 6 ? "1" : "0";
       }
 
-      // Unlock dot and reveal card at the exact pixel contact
+      // Bidirectional unlock/retract: reveal when line reaches, retract when scrolling up
+      let changed = false;
       dotOffsetsRef.current.forEach((offset, idx) => {
-        if (h >= offset - 6) {
-          if (!reachedRef.current[idx]) {
-            reachedRef.current[idx] = true;
-            setReachedItems([...reachedRef.current]);
-          }
+        const isReached = h >= offset - 6;
+        if (reachedRef.current[idx] !== isReached) {
+          reachedRef.current[idx] = isReached;
+          changed = true;
         }
       });
+      if (changed) {
+        setReachedItems([...reachedRef.current]);
+      }
 
       rafId = requestAnimationFrame(loop);
     };
@@ -126,7 +145,13 @@ export default function Experience() {
     >
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
+        <motion.div
+          className="text-center max-w-2xl mx-auto mb-20"
+          variants={sectionHeaderVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-60px" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FF5A36] tracking-tight inline-block relative">
             Experience
             <span className="block w-12 h-1 bg-[#3DD68C] rounded-full mx-auto mt-2 shadow-sm shadow-[#3DD68C]/50" />
@@ -134,7 +159,7 @@ export default function Experience() {
           <p className="mt-4 text-base text-slate-300">
             My professional milestones, internships, and technical leadership roles.
           </p>
-        </div>
+        </motion.div>
 
         {/* Scroll-Interactive Vertical Timeline */}
         <div ref={containerRef} className="relative">
