@@ -27,6 +27,15 @@ body {
   animation: marquee 25s linear infinite;
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.9s infinite;
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #09090b; }
 ::-webkit-scrollbar-thumb { background: #FF5A36; border-radius: 3px; }

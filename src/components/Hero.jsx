@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
 import { personalInfo, stats } from "../data/portfolioData";
 import { DownloadIcon, EmailIcon } from "./Icons";
 import { motion } from "framer-motion";
+
+const TYPEWRITER_WORDS = ["AI First Developer", "Java", "Spring Boot", "Langchain & LangGraph", "AI Engineer"];
 
 const containerVariants = {
   hidden: {},
@@ -62,6 +65,40 @@ const statVariants = {
 };
 
 export default function Hero() {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = TYPEWRITER_WORDS[currentWordIndex];
+    let timer;
+
+    if (!isDeleting) {
+      if (displayedText.length < currentWord.length) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentWord.slice(0, displayedText.length + 1));
+        }, 85);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 1600);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentWord.slice(0, displayedText.length - 1));
+        }, 40);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % TYPEWRITER_WORDS.length);
+        }, 350);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, currentWordIndex]);
+
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -122,6 +159,11 @@ export default function Hero() {
               <span>{personalInfo.title}</span>
               <span className="text-slate-600 font-normal">|</span>
               <span>{personalInfo.college}</span>
+              <span className="text-slate-600 font-normal">|</span>
+              <span className="inline-flex items-center text-[#3DD68C] font-semibold tracking-tight min-h-[1.75rem]">
+                <span>{displayedText}</span>
+                <span className="inline-block w-[2px] h-5 ml-1 bg-[#3DD68C] animate-blink" />
+              </span>
             </motion.p>
 
             {/* Bio */}
