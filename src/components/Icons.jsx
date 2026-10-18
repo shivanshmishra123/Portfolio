@@ -72,6 +72,12 @@ export const CloseIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
+export const ArrowUpIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+);
+
 export const iconMap = {
   github: GithubIcon,
   leetcode: LeetcodeIcon,

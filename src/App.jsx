@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Contact />
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </div>
   );
