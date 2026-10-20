@@ -31,58 +31,85 @@ export const socialLinks = [
 export const projects = [
   {
     id: 1,
-    title: "Nexus SaaS Analytics Engine",
+    title: "AlgoClash - 1v1 Competitive Coding Platform",
     description:
-      "A high-throughput telemetry analytics dashboard designed for SaaS platforms, providing real-time data visualization, user acquisition tracking, and customizable widget metrics.",
-    techStack: ["React", "Node.js", "MongoDB", "TailwindCSS"],
+      "AlgoClash is a real-time, head-to-head competitive coding platform designed to facilitate single-elimination tournaments with automated code execution. Unlike generic coding platforms, AlgoClash focuses on the Low Latency Match experience, utilizing a distributed judging architecture to provide instant feedback to competitors..",
+    techStack: ["React", "Spring Boot", "PostgreSQL", "Judge0", "WebSockets"],
     badge: "Featured",
     badgeColor: "orange",
-    githubUrl: "https://github.com",
-    liveUrl: "#",
+    githubUrl: "https://github.com/shivanshmishra123/AlgoClash",
+    liveUrl: "algoclash.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuACt5nMoM98BhTVq5gNRSwM7qjXmlzdVZ7iKzK8bYh0IKQjadk1XwmgmDKMiPfgv-BpcYrYwfUFYaBmRYvmJ3zhpVsQoM2Jfxv22NgvyqveTRAuUPjm2Xo_z-od1kaWh1ivQmk2fBGSAmpnUonffsPTESpts5iElXGVt-oE5eDcJJ8ce2YnzgulxkIU2fCZ-hhgfUFKJHLv-v6FoproAj1m0sOd-5Ti6Wjnm474ghy1UZjQJJneuiJcZg",
   },
   {
     id: 2,
-    title: "Aura Developer Code Companion",
+    title: "Meeting Debrief - Unlock Intelligence in Every Meeting",
     description:
-      "Context-aware programming assistant integrating IDE web extensions with mobile companion alerts to refactor functions, run test coverage, and catch syntax exceptions in real-time.",
-    techStack: ["Python", "FastAPI", "TypeScript", "OpenAI API"],
-    badge: "Mobile & Web",
+      "Production AI SaaS that turns meeting recordings into structured intelligence. Upload audio → Gemini AI transcribes, extracts decisions, action items & open questions → RAG chatbot lets you query any meeting in natural language. Features a Drift Detection engine that auto-marks superseded decisions across chained meetings.",
+    techStack: ["React", "FastAPI", "Pinecone", "Google Gemini 2.5 Flash", "PostgreSQL"],
+    badge: "AI",
     badgeColor: "green",
-    githubUrl: "https://github.com",
-    liveUrl: "#",
+    githubUrl: "https://github.com/shivanshmishra123/MeetingDebrief",
+    liveUrl: "debrief-io.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
   },
   {
     id: 3,
-    title: "FlashKV Distributed Memory Store",
+    title: "Aarogya MP",
     description:
-      "Low-latency key-value memory store implementation supporting Raft consensus for leader election, consistent hashing replication, and sub-millisecond query responses.",
-    techStack: ["Go", "gRPC", "Docker", "Redis Protocol"],
-    badge: "Systems",
+      "Built for the Ministry of Ayush, MP Goverment, AarogyaMP is a symptom-assessment + doctor-discovery + doctor-chat platform, built as a single mobile app with two roles (Patient, Doctor) sharing one backend and one AI engine.",
+    techStack: ["Flutter", "FastAPI", "PostgreSQL", "Whisper API"],
+    badge: "GovTech on Scale",
     badgeColor: "slate",
-    githubUrl: "https://github.com",
-    liveUrl: "#",
-    image: null,
-    placeholderIcon: "⚡",
-    placeholderSubtitle: "Go & Redis In-Memory Cluster",
+    githubUrl: "https://github.com/shivanshmishra123/AarogyaMP_Chatbot",
+    liveUrl: "debrief-io.netlify.app",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
   },
+
   {
     id: 4,
-    title: "AarogyaMP Healthcare App",
+    title: "PrepLC - Company Wise DSA Question Repository",
     description:
-      "Public health delivery mobile app for Madhya Pradesh providing symptom intake, AYUSH appointment booking, AI triage chatbot, and doctor discovery for diverse populations.",
-    techStack: ["React Native", "Node.js", "Firebase", "TensorFlow"],
-    badge: "Mobile",
-    badgeColor: "green",
-    githubUrl: "https://github.com",
-    liveUrl: "#",
-    image: null,
-    placeholderIcon: "🏥",
-    placeholderSubtitle: "Public Health Platform",
+      "PrepLC is a curated DSA question repository that organizes LeetCode problems by company tags and recency of interview frequency (e.g., last 30 days, 3 months, 6 months). It helps you focus on the most relevant and recently asked questions to prepare smarter for technical interviews.",
+    techStack: ["Spring Boot", "PostgreSQL", "Redis", "React"],
+    badge: "System",
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/PrepLC-backend",
+    liveUrl: "prep-lc.netlify.app",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
   },
+  {
+    id: 5,
+    title: "Kontent Company",
+    description:
+      "KOCO is a full-service content production company specializing in end-to-end video production, cinematic filmmaking, high-retention video editing, VFX, motion graphics, and organic content marketing.",
+    techStack: ["React", "Google AppScript"],
+    badge: "Freelance",
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
+    liveUrl: "kontentcompany.in",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
+  },
+  {
+    id: 6,
+    title: "PRD Document Renamer - SGSITS",
+    description:
+      "Developed a web-based utility tool for GSITS students to automate document renaming for the Placement Registration Documentation (PRD) process, reducing manual effort and naming errors while ensuring documents comply with Training & Placement (TnP) guidelines for seamless placement registration. ",
+    techStack: ["HTML", "CSS","JS","JSZip"],
+    badge: "Utility",
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
+    liveUrl: "kontentcompany.in",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
+  },
+
+
 ];
 
 export const experience = [
