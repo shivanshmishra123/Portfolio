@@ -36,18 +36,10 @@ export const projects = [
       "AlgoClash is a real-time, head-to-head competitive coding platform designed to facilitate single-elimination tournaments with automated code execution. Unlike generic coding platforms, AlgoClash focuses on the Low Latency Match experience, utilizing a distributed judging architecture to provide instant feedback to competitors..",
     techStack: ["React", "Spring Boot", "PostgreSQL", "Judge0", "WebSockets"],
     badge: "Featured",
-<<<<<<< HEAD
-    badgeColor: "orange",
-    githubUrl: "https://github.com/shivanshmishra123/AlgoClash",
-    liveUrl: "algoclash.netlify.app",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuACt5nMoM98BhTVq5gNRSwM7qjXmlzdVZ7iKzK8bYh0IKQjadk1XwmgmDKMiPfgv-BpcYrYwfUFYaBmRYvmJ3zhpVsQoM2Jfxv22NgvyqveTRAuUPjm2Xo_z-od1kaWh1ivQmk2fBGSAmpnUonffsPTESpts5iElXGVt-oE5eDcJJ8ce2YnzgulxkIU2fCZ-hhgfUFKJHLv-v6FoproAj1m0sOd-5Ti6Wjnm474ghy1UZjQJJneuiJcZg",
-=======
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/AlgoClash",
     liveUrl: "https://algo-clash-zeta.netlify.app",
     image: "/Algoclash.png",
->>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
   {
     id: 2,
@@ -56,18 +48,10 @@ export const projects = [
       "Production AI SaaS that turns meeting recordings into structured intelligence. Upload audio → Gemini AI transcribes, extracts decisions, action items & open questions → RAG chatbot lets you query any meeting in natural language. Features a Drift Detection engine that auto-marks superseded decisions across chained meetings.",
     techStack: ["React", "FastAPI", "Pinecone", "Google Gemini 2.5 Flash", "PostgreSQL"],
     badge: "AI",
-<<<<<<< HEAD
-    badgeColor: "green",
-    githubUrl: "https://github.com/shivanshmishra123/MeetingDebrief",
-    liveUrl: "debrief-io.netlify.app",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
-=======
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/MeetingDebrief",
     liveUrl: "https://debrief-io.netlify.app",
     image: "/Debrief.png",
->>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
   {
     id: 3,
@@ -78,16 +62,10 @@ export const projects = [
     badge: "GovTech on Scale",
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/AarogyaMP_Chatbot",
-<<<<<<< HEAD
-    liveUrl: "debrief-io.netlify.app",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
-=======
     liveUrl: "https://debrief-io.netlify.app",
     image: null,
     placeholderIcon: "🏥",
     placeholderSubtitle: "GovTech Healthcare Platform",
->>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
 
   {
@@ -99,11 +77,6 @@ export const projects = [
     badge: "System",
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/PrepLC-backend",
-<<<<<<< HEAD
-    liveUrl: "prep-lc.netlify.app",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
-=======
     liveUrl: "https://prep-lc.netlify.app",
     image: "/PrepLC.png",
   },
@@ -130,36 +103,7 @@ export const projects = [
     githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
     liveUrl: "https://document-renamer-prd-sgsits.netlify.app",
     image: "/PRD.png",
->>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
-  {
-    id: 5,
-    title: "Kontent Company",
-    description:
-      "KOCO is a full-service content production company specializing in end-to-end video production, cinematic filmmaking, high-retention video editing, VFX, motion graphics, and organic content marketing.",
-    techStack: ["React", "Google AppScript"],
-    badge: "Freelance",
-    badgeColor: "slate",
-    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
-    liveUrl: "kontentcompany.in",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
-  },
-  {
-    id: 6,
-    title: "PRD Document Renamer - SGSITS",
-    description:
-      "Developed a web-based utility tool for GSITS students to automate document renaming for the Placement Registration Documentation (PRD) process, reducing manual effort and naming errors while ensuring documents comply with Training & Placement (TnP) guidelines for seamless placement registration. ",
-    techStack: ["HTML", "CSS","JS","JSZip"],
-    badge: "Utility",
-    badgeColor: "slate",
-    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
-    liveUrl: "kontentcompany.in",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
-  },
-
-
 ];
 
 export const experience = [
