@@ -6,7 +6,7 @@ export const personalInfo = {
   name: "Shivansh Mishra",
   title: "B.Tech – IT, 3rd Year",
   college: "SGSITS Indore",
-  bio: "Passionate builder, CS enthusiast driven by building robust full-stack applications and solving algorithmic challenges. Experienced in modern web frameworks, system design fundamentals, and scalable cloud architectures. Focused on building things that really matter, make life easier.  ",
+  bio: "Passionate builder, CS enthusiast driven by building robust full-stack applications and solving algorithmic challenges. Experienced in modern web frameworks, system design fundamentals, and scalable cloud architectures. Focused on building things that really matter, making life easier.  ",
   email: "13shivanshmishra@gmail.com",
   phone: "+91 70247 21150",
   location: "Indore, Madhya Pradesh, India",
@@ -36,11 +36,18 @@ export const projects = [
       "AlgoClash is a real-time, head-to-head competitive coding platform designed to facilitate single-elimination tournaments with automated code execution. Unlike generic coding platforms, AlgoClash focuses on the Low Latency Match experience, utilizing a distributed judging architecture to provide instant feedback to competitors..",
     techStack: ["React", "Spring Boot", "PostgreSQL", "Judge0", "WebSockets"],
     badge: "Featured",
+<<<<<<< HEAD
     badgeColor: "orange",
     githubUrl: "https://github.com/shivanshmishra123/AlgoClash",
     liveUrl: "algoclash.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuACt5nMoM98BhTVq5gNRSwM7qjXmlzdVZ7iKzK8bYh0IKQjadk1XwmgmDKMiPfgv-BpcYrYwfUFYaBmRYvmJ3zhpVsQoM2Jfxv22NgvyqveTRAuUPjm2Xo_z-od1kaWh1ivQmk2fBGSAmpnUonffsPTESpts5iElXGVt-oE5eDcJJ8ce2YnzgulxkIU2fCZ-hhgfUFKJHLv-v6FoproAj1m0sOd-5Ti6Wjnm474ghy1UZjQJJneuiJcZg",
+=======
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/AlgoClash",
+    liveUrl: "https://algo-clash-zeta.netlify.app",
+    image: "/Algoclash.png",
+>>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
   {
     id: 2,
@@ -49,11 +56,18 @@ export const projects = [
       "Production AI SaaS that turns meeting recordings into structured intelligence. Upload audio → Gemini AI transcribes, extracts decisions, action items & open questions → RAG chatbot lets you query any meeting in natural language. Features a Drift Detection engine that auto-marks superseded decisions across chained meetings.",
     techStack: ["React", "FastAPI", "Pinecone", "Google Gemini 2.5 Flash", "PostgreSQL"],
     badge: "AI",
+<<<<<<< HEAD
     badgeColor: "green",
     githubUrl: "https://github.com/shivanshmishra123/MeetingDebrief",
     liveUrl: "debrief-io.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
+=======
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/MeetingDebrief",
+    liveUrl: "https://debrief-io.netlify.app",
+    image: "/Debrief.png",
+>>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
   {
     id: 3,
@@ -64,9 +78,16 @@ export const projects = [
     badge: "GovTech on Scale",
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/AarogyaMP_Chatbot",
+<<<<<<< HEAD
     liveUrl: "debrief-io.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
+=======
+    liveUrl: "https://debrief-io.netlify.app",
+    image: null,
+    placeholderIcon: "🏥",
+    placeholderSubtitle: "GovTech Healthcare Platform",
+>>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
 
   {
@@ -78,9 +99,38 @@ export const projects = [
     badge: "System",
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/PrepLC-backend",
+<<<<<<< HEAD
     liveUrl: "prep-lc.netlify.app",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBIxcmRNnJ7lvwZg5DLXOvHeE_xMEsynD2dk_rcdj1K0F3fRgAafrOc_cd7aYsEjrNM2YJPUJS1mVsxXMwDk7rJqOu_9q8GKRDPoGRnvozzmBlq-tAJhpoUISpya9_N9f9ILJvbDdxxhUWUGXEO3FsoWstQSZt0rn9PGW4wF830U_WohMo-aWkhxdOBd86ljdQtiEvjRUoseUuSgaJ6Blj-PnU5pU4BiLJVT6BFylLA",
+=======
+    liveUrl: "https://prep-lc.netlify.app",
+    image: "/PrepLC.png",
+  },
+  {
+    id: 5,
+    title: "Kontent Company",
+    description:
+      "KOCO is a full-service content production company specializing in end-to-end video production, cinematic filmmaking, high-retention video editing, VFX, motion graphics, and organic content marketing.",
+    techStack: ["React", "Google AppScript"],
+    badge: "Freelance",
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
+    liveUrl: "https://kontentcompany.in",
+    image: "/Kontent Company.png",
+  },
+  {
+    id: 6,
+    title: "PRD Document Renamer - SGSITS",
+    description:
+      "Developed a web-based utility tool for GSITS students to automate document renaming for the Placement Registration Documentation (PRD) process, reducing manual effort and naming errors while ensuring documents comply with Training & Placement (TnP) guidelines for seamless placement registration. ",
+    techStack: ["HTML", "CSS", "JS", "JSZip"],
+    badge: "Utility",
+    badgeColor: "slate",
+    githubUrl: "https://github.com/shivanshmishra123/KontentCompanyNewRepo",
+    liveUrl: "https://document-renamer-prd-sgsits.netlify.app",
+    image: "/PRD.png",
+>>>>>>> d1f085a (feat: now the projects have their own thumbnails, modified the experience section and apart from resume url everything else is almost ready)
   },
   {
     id: 5,
@@ -115,38 +165,13 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    role: "Full Stack Engineering Intern",
-    company: "TechVanguard Solutions, Bangalore (Remote)",
-    period: "Jan 2025 – Present",
-    isCurrent: true,
-    highlights: [
-      "Architected REST APIs in Node.js and Express processing over 50,000 requests daily with sub-80ms latencies.",
-      "Migrated state management to Redux Toolkit, decreasing client-side re-render bottlenecks by 32%.",
-      "Engineered automated CI/CD pipelines with GitHub Actions to containerize deployment workloads on AWS EC2.",
-    ],
-  },
-  {
-    id: 2,
-    role: "Undergraduate Research Fellow",
-    company: "Center for Advanced Computing, SGSITS Indore",
-    period: "Jun 2024 – Nov 2024",
+    role: "Tech Intern",
+    company: "Beiyo Technven Pvt Ltd, Indore",
+    period: "Dec 2024 - Feb 2025",
     isCurrent: false,
     highlights: [
-      "Conducted benchmarking on distributed consensus algorithms under intermittent network partitioning.",
-      "Drafted technical documentation and test cases for departmental distributed database testbeds.",
-      "Presented research outcomes on gossip protocols at the national student computing colloquium.",
-    ],
-  },
-  {
-    id: 3,
-    role: "Technical Lead & Open Source Mentor",
-    company: "Computer Club & Developer Student Circle, SGSITS",
-    period: "Aug 2023 – May 2024",
-    isCurrent: false,
-    highlights: [
-      "Organized 12+ hands-on coding bootcamps on Data Structures, Algorithms, and Git workflow for 200+ students.",
-      "Mentored junior engineering batches for Hackathons and Google Summer of Code orientation.",
-      "Coordinated annual inter-college competitive programming contest with 400+ participants.",
+      "Standardized API integration and communication using Node.js and React.js by authoring clear, structured documentation and well - defined endpoints, improving codebase readability and reducing developer onboarding time by ˜ 30 %.",
+      " Optimized server-side routing architecture by refactoring and deprecating 15+ redundant routes, enhancing scalability, improving request throughput, and reducing API latency under load",
     ],
   },
 ];
