@@ -63,7 +63,7 @@ export const projects = [
     badgeColor: "slate",
     githubUrl: "https://github.com/shivanshmishra123/AarogyaMP_Chatbot",
     liveUrl: "https://debrief-io.netlify.app",
-    image: null,
+    image: "/AarogyaMP.png",
     placeholderIcon: "🏥",
     placeholderSubtitle: "GovTech Healthcare Platform",
   },
