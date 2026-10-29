@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { personalInfo, stats } from "../data/portfolioData";
-import { DownloadIcon, EmailIcon } from "./Icons";
-import { motion } from "framer-motion";
+import { DownloadIcon, EmailIcon, ChevronRightIcon, DocumentIcon, CloseIcon } from "./Icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TYPEWRITER_WORDS = ["AI First Developer", "Java", "Spring Boot", "Langchain & LangGraph", "AI Engineer"];
 
@@ -68,6 +68,8 @@ export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showResumeOptions, setShowResumeOptions] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const currentWord = TYPEWRITER_WORDS[currentWordIndex];
@@ -99,6 +101,25 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentWordIndex]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowResumeOptions(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowResumeOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const handleScroll = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -106,10 +127,12 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[calc(100vh-80px)] flex items-center py-16 md:py-24 bg-transparent overflow-hidden"
+      className="relative min-h-[calc(100vh-80px)] flex items-center py-16 md:py-24 bg-transparent"
     >
-      {/* Background ambient glow - subtle & elegant */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(255,90,54,0.06),transparent_70%)] blur-3xl pointer-events-none" />
+      {/* Background ambient glow - subtle & contained */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(255,90,54,0.06),transparent_70%)] blur-3xl" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         <motion.div
@@ -176,18 +199,102 @@ export default function Hero() {
 
             {/* Action Buttons */}
             <motion.div
-              className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+              className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto relative z-30"
               variants={fadeUp}
             >
-              <a
-                href={personalInfo.resumeUrl}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-[#FF5A36] hover:bg-[#e44a27] shadow-lg shadow-[#FF5A36]/30 hover:shadow-xl hover:shadow-[#FF5A36]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <DownloadIcon />
-                <span>Download Resume</span>
-              </a>
+              {/* Dual Resume Download Button & Popover */}
+              <div className="relative w-full sm:w-auto z-30" ref={dropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setShowResumeOptions((prev) => !prev)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-[#FF5A36] hover:bg-[#e44a27] shadow-lg shadow-[#FF5A36]/30 hover:shadow-xl hover:shadow-[#FF5A36]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
+                  aria-expanded={showResumeOptions}
+                  aria-haspopup="true"
+                  id="download-resume-btn"
+                >
+                  <DownloadIcon />
+                  <span>Download Resume</span>
+                  <ChevronRightIcon
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      showResumeOptions ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Resume Options (Right Side Flyout, Collapsing to Left) */}
+                <AnimatePresence>
+                  {showResumeOptions && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -24, scale: 0.96 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: -20, scale: 0.96 }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute left-0 top-full mt-3 sm:mt-0 sm:top-0 sm:left-full sm:ml-4 w-full sm:w-[350px] bg-[#16161a] border border-white/20 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.98)] p-3.5 z-50 text-left ring-1 ring-white/10"
+                    >
+                      <div className="px-2 py-1.5 border-b border-white/10 mb-2.5 flex items-center justify-between">
+                        <span className="text-[11px] font-bold tracking-wider uppercase text-slate-300">
+                          Select Resume Version
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FF5A36]/20 text-[#FF5A36] border border-[#FF5A36]/40">
+                            2 Profiles
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setShowResumeOptions(false)}
+                            className="text-slate-400 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors"
+                            aria-label="Close options"
+                          >
+                            <CloseIcon className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-2.5">
+                        {personalInfo.resumes.map((resume) => (
+                          <a
+                            key={resume.id}
+                            href={resume.url}
+                            download={resume.fileName}
+                            onClick={() => setShowResumeOptions(false)}
+                            className="group/item flex items-center justify-between p-3.5 rounded-xl bg-[#222228] hover:bg-[#2b2b33] border border-white/10 hover:border-[#FF5A36] transition-all duration-200 shadow-md"
+                          >
+                            <div className="flex items-center gap-3.5 min-w-0">
+                              <div className="w-10 h-10 rounded-xl bg-[#2e2e38] border border-white/10 flex items-center justify-center text-[#FF5A36] group-hover/item:bg-[#FF5A36] group-hover/item:text-white transition-all duration-200 shrink-0">
+                                <DocumentIcon className="w-5 h-5" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-bold text-white group-hover/item:text-[#FF5A36] transition-colors truncate">
+                                    {resume.title}
+                                  </span>
+                                  <span
+                                    className={`text-[10px] font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                                      resume.id === "ai"
+                                        ? "bg-[#FF5A36]/20 text-[#FF5A36] border-[#FF5A36]/40"
+                                        : "bg-[#3DD68C]/20 text-[#3DD68C] border-[#3DD68C]/40"
+                                    }`}
+                                  >
+                                    {resume.badge}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-slate-300 mt-0.5 truncate">
+                                  {resume.description}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="w-8 h-8 rounded-lg bg-[#2e2e38] group-hover/item:bg-[#FF5A36] border border-white/10 group-hover/item:border-[#FF5A36] flex items-center justify-center text-slate-300 group-hover/item:text-white transition-all shrink-0 ml-2">
+                              <DownloadIcon className="w-4 h-4 group-hover/item:translate-y-0.5 transition-transform" />
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Contact Me Button */}
               <button
                 onClick={() => handleScroll("contact")}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-[#09090b] bg-[#3DD68C] hover:bg-[#32c57f] border-2 border-[#3DD68C] hover:border-[#32c57f] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-lg shadow-[#3DD68C]/25 hover:shadow-xl hover:shadow-[#3DD68C]/35"
@@ -199,7 +306,7 @@ export default function Hero() {
 
             {/* Stats row */}
             <motion.div
-              className="mt-10 pt-8 border-t border-slate-800/80 flex items-center gap-8 text-left"
+              className="mt-10 pt-8 border-t border-slate-800/80 flex items-center gap-8 text-left relative z-10"
               variants={fadeUp}
             >
               {stats.map((stat, i) => (
